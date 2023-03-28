@@ -1,3 +1,4 @@
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import { NavBar } from '../components/NavBar';
 import { Card, Container } from 'react-bootstrap';
@@ -15,31 +16,30 @@ const CatDetails = (): JSX.Element => {
 
   return (
     <div>
-       <Container>
-        {catDetailsError
-          && <AlertBanner message='Apologies but
+      <Container>
+        {catDetailsError &&
+          <AlertBanner message='Apologies but
           we could not load new cats for you at this time! Miau!' />}
       </Container>
       <NavBar />
       <div>
         {catDetailsLoading && 'Fetching cat details...'}
       </div>
-  
       {catDetailsResponse &&
         <Card style={{ margin: '5rem auto', width: '60rem' }}>
           <Card.Img variant="top" src={catDetailsResponse.url} />
           <Card.Body>
             <Card.Title>
-              Name: {catDetailsResponse.breeds && catDetailsResponse.breeds[0].name}
+              Name: {catDetailsResponse.breeds?.[0].name}
             </Card.Title>
             <Card.Text>
-              Origin: {catDetailsResponse.breeds && catDetailsResponse.breeds[0].origin}
+              Origin: {catDetailsResponse.breeds?.[0].origin}
             </Card.Text>
             <Card.Text>
-              Temperament: {catDetailsResponse.breeds && catDetailsResponse.breeds[0].temperament}
+              Temperament: {catDetailsResponse.breeds?.[0].temperament}
             </Card.Text>
             <Card.Text>
-              Description: {catDetailsResponse.breeds && catDetailsResponse.breeds[0].description}
+              Description: {catDetailsResponse.breeds?.[0].description}
             </Card.Text>
           </Card.Body>
         </Card>
