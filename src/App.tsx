@@ -1,22 +1,21 @@
-import React from 'react';
+import { BrowserRouter, Routes, Route} from 'react-router-dom'
+import Home from './pages/Home';
+import Cat from './pages/CatDetails';
+import { CatProvider } from './contexts/CatContext';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <CatProvider>
+        <BrowserRouter>
+          <Routes >
+            <Route path='/' element={<Home />} />
+            <Route path='/cat/:id' element={<Cat />} />
+          </Routes>
+        </BrowserRouter>
+      </CatProvider>
     </div>
   );
 }
